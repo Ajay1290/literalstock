@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
+import { useQuery } from 'utils';
 
 interface Props {}
 
@@ -10,7 +11,8 @@ interface User {
 
 export function Navbar(props: Props) {
   const current_user: User = { name: 'Ajay', is_authenticated: false };
-  const [searchValue, setSearchValue] = React.useState("");
+  const query = useQuery();
+  const [searchValue, setSearchValue] = React.useState(query.get('q') || "");
 
   return (
     <Div>
@@ -22,7 +24,7 @@ export function Navbar(props: Props) {
         </div>
 
         <div className="sw-navbar-nav ml-auto">
-          <SearchBarForm action="{{ url_for('main.search') }}">
+          <SearchBarForm action="/search">
             <SearchbarInput
               type="search"
               name="q"

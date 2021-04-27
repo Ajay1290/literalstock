@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
@@ -9,6 +8,8 @@ import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { BookPage } from './pages/BookPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { SearchPage } from './pages/SearchPage';
+import { TagPage } from './pages/TagPage';
 
 export function App() {
   return (
@@ -16,7 +17,9 @@ export function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/book/:id" component={BookPage} />
+        <Route exact path="/search" component={SearchPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/tag/:tag" component={TagPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>

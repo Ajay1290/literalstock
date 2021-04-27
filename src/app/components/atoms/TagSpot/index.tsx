@@ -1,20 +1,17 @@
+import { Tags } from "app/struct";
 import * as React from "react";
 import styled from "styled-components/macro";
 
-export default function TagSpot({ random_tags }) {
+export default function TagSpot({ tags, title="Tags You May Like", description="Explore Books by tags to browse more realted books." }) {
   return(
     <section className="bg-white border mb-3 p-3 rounded">
-      <h3 className="h4 ">Programming Tags</h3>        
-      <p className='text-muted f-14'>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, voluptas.
-      </p>
+      <h3 className="h4">{title}</h3>        
+      <p className='text-muted f-14'>{description}</p>
       <ul className="list-group">
-        {random_tags.map( (tag : string) => (
-          <a 
-            title={`Books by ${tag}`} 
-            href="{{ url_for('tags.tag', tag_id=tag.id, t=tag.name) }}">
+        {tags.map( (tag : Tags) => (
+          <a title={`Books by ${tag.name}`} href={`/tag/${tag.name}`}>
             <li className="list-group-item list-group-item-light btn category_side">
-              {tag}
+              {tag.name}
             </li>
           </a>
         ))}
@@ -22,6 +19,3 @@ export default function TagSpot({ random_tags }) {
     </section>
   )
 }
-
-
-const Div = styled.div``;
